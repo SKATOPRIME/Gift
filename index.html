@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#74151d">
+  <title>Feliz cumple mes amor</title>
+  <style>
+    :root {
+      --red: #74151d;
+      --red-dark: #3b080e;
+      --paper: #fffefa;
+      --ink: #171313;
+      --circle-size: 21%;
+      --main-circle: min(1080px, 96vw);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 18% 18%, rgba(255, 155, 145, .17), transparent 35%),
+        radial-gradient(ellipse at 82% 65%, rgba(20, 0, 0, .28), transparent 42%),
+        repeating-linear-gradient(115deg, rgba(255,255,255,.018) 0 1px, transparent 1px 4px),
+        linear-gradient(135deg, #8d2028, var(--red) 52%, #4b0b12);
+      font-family: Georgia, "Times New Roman", serif;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 42px 18px 70px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .orbit-stage {
+      width: var(--main-circle);
+      aspect-ratio: 1;
+      max-height: 1080px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: var(--paper);
+      border-radius: 50%;
+      box-shadow: 0 24px 75px rgba(22, 0, 0, .24);
+    }
+
+    .message {
+      width: 51%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7%;
+      box-shadow: 0 0 38px rgba(0,0,0,.15);
+      z-index: 2;
+      position: relative;
+    }
+
+    .date {
+      font-size: clamp(1.5rem, 5.6vw, 4.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      white-space: nowrap;
+    }
+
+    .message h1 {
+      font-size: clamp(1.55rem, 5.8vw, 4.8rem);
+      font-weight: 400;
+      line-height: 1.28;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .photo-link {
+      width: var(--circle-size);
+      aspect-ratio: 1;
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      padding: 5px;
+      background: #fff;
+      border: 1px solid #aaa99f;
+      box-shadow: 0 3px 12px rgba(0,0,0,.12);
+      z-index: 3;
+      overflow: hidden;
+      translate: -50% -50%;
+      transition: box-shadow .25s ease, scale .25s ease;
+    }
+
+    .photo-link:hover,
+    .photo-link:focus-visible {
+      scale: 1.07;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      outline: 2px solid #8c2028;
+      outline-offset: 4px;
+    }
+
+    /* La imagen gira dentro del marco; el marco permanece fijo. */
+    .photo-link img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 50%;
+      animation: spin 18s linear infinite;
+      transform-origin: center;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .photo-link:nth-of-type(2) img { animation-duration: 22s; animation-direction: reverse; }
+    .photo-link:nth-of-type(3) img { animation-duration: 20s; }
+    .photo-link:nth-of-type(4) img { animation-duration: 25s; animation-direction: reverse; }
+    .photo-link:nth-of-type(5) img { animation-duration: 19s; }
+    .photo-link:nth-of-type(6) img { animation-duration: 23s; animation-direction: reverse; }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Posiciones: 6 imágenes equidistantes sobre un anillo concéntrico (radio 38%, cada 60°). */
+    .photo-1 { left: 50%;     top: 12%; }
+    .photo-2 { left: 82.91%;  top: 31%; }
+    .photo-3 { left: 82.91%;  top: 69%; }
+    .photo-4 { left: 50%;     top: 88%; }
+    .photo-5 { left: 17.09%;  top: 69%; }
+    .photo-6 { left: 17.09%;  top: 31%; }
+
+    .continuation {
+      min-height: 75vh;
+      padding: 72px 22px 100px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .text-panel {
+      width: min(920px, 100%);
+      min-height: 360px;
+      padding: clamp(28px, 6vw, 68px);
+      background: var(--paper);
+      border-radius: 5px;
+      box-shadow: 0 18px 55px rgba(25, 0, 0, .25);
+      text-align: center;
+    }
+
+    .text-panel h2 {
+      margin: 0 0 22px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+    }
+
+    .text-panel p {
+      max-width: 700px;
+      margin: 0 auto 16px;
+      font-family: Arial, sans-serif;
+      font-size: clamp(1rem, 1.7vw, 1.15rem);
+      line-height: 1.8;
+      color: #393333;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 28px 8px 45px; }
+      .orbit-stage { width: 98vw; }
+      .photo-link { padding: 3px; }
+      .message { width: 54%; padding: 5%; }
+      .date { margin-bottom: 7px; }
+      .continuation { padding: 35px 14px 65px; }
+      .text-panel { min-height: 300px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .photo-link img { animation: none; }
+      .photo-link { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-label="Mensaje principal">
+      <div class="orbit-stage">
+
+        <div class="message">
+          <p class="date">31/10/2026</p>
+          <h1>Te amo con<br>princesa</h1>
+        </div>
+
+        <a class="photo-link photo-1" href="https://open.spotify.com/intl-es/track/2lTm559tuIvatlT1u0JYG2?si=729cdc619c1a4f8e" target="_blank" rel="noopener noreferrer" aria-label="Abrir enlace de la imagen 1">
+          <img src="baile.png" alt="Baile Inolvidable">
+        </a>
+
+        <a class="photo-link photo-2" href="https://open.spotify.com/intl-es/track/0YVh3SyU4dS7jOWIFQ1tTf?si=054a78ddafb141b4" target="_blank" rel="noopener noreferrer" aria-label="Abrir enlace de la imagen 2">
+          <img src="burn.png" alt="Let The World Burn">
+        </a>
+
+        <a class="photo-link photo-3" href="https://open.spotify.com/intl-es/track/3J87LRdykwfOHi6QxOLKld?si=1a35d71383cb4e0f" target="_blank" rel="noopener noreferrer" aria-label="Abrir enlace de la imagen 3">
+          <img src="lonely.png" alt="The lonely Waltz">
+        </a>
+
+        <a class="photo-link photo-4" href="https://open.spotify.com/intl-es/track/25NPeIjHjQGvyp4D52Tji2?si=72ecb4defdae417f" target="_blank" rel="noopener noreferrer" aria-label="Abrir enlace de la imagen 4">
+          <img src="okupa.png" alt="Okupa">
+        </a>
+
+        <a class="photo-link photo-5" href="https://open.spotify.com/intl-es/track/7MVIfkyzuUmQ716j8U7yGR?si=4e73c6d1141d45d2" target="_blank" rel="noopener noreferrer" aria-label="Abrir enlace de la imagen 5">
+          <img src="raravez.png" alt="Rara Vez">
+        </a>
+
+        <a class="photo-link photo-6" href="https://open.spotify.com/intl-es/track/1WEMFuKJ4DFsOO4NF3Ia6B?si=018ef4fa28ce4a4d" target="_blank" rel="noopener noreferrer" aria-label="Abrir enlace de la imagen 6">
+          <img src="ojala.png" alt="Imagen 6">
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Continuación de la página: sustituye este texto cuando quieras. -->
+    <section class="continuation">
+      <article class="text-panel">
+        <h2>Con cada canción me acuerdo de ti</h2>
+        <p>
+          Espero que este regalo te guste tanto como a mi me gusto programarlo, se que es un regalo algo normal pero aqui
+          hay mas que solo lineas de codigo o link a canciones.
+          Cada una de estas canciones representa un momento en nuestras vidas, un sentimiento que compartimos, una caricia
+          que nos hemos dado.
+        </p>
+        <p>
+          Estas canciones son muy especiales para mi, y es por eso que decidi hacerte esto, un lugar donde
+          puedes encontrarlas siempre, donde puedas recordar como cada una de ellas es una etapa de nuestras vidas juntos.
+        </p>
+        <p>
+          El rojo del fondo se que no es tu color favorito, pero hace referencia a nuestros corazones fucionandose en uno solo,
+          por eso existe ese degradado hacia un rojo mas oscuro.
+        </p>
+        <p>
+          Te amo con toda el alma y con todo mi corazon, eres la mujer mas linda, tierna, amable, carismatica, bonita, sincera, coqueta
+          y preciosa que conozco, eres la persona que mas amo y espero sea asi para toda la vida.
+        </p>
+        <p>
+          Te amo princesa, nunca lo olvides 
+        </p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
